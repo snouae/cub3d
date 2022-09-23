@@ -6,7 +6,7 @@
 /*   By: ilahyani <ilahyani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:47:34 by ilahyani          #+#    #+#             */
-/*   Updated: 2022/08/29 11:50:36 by ilahyani         ###   ########.fr       */
+/*   Updated: 2022/09/23 11:50:54 by ilahyani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 # include <stdio.h>
 # include <math.h>
 # include <mlx.h>
+# include "libft/libft.h"
 
 #endif
