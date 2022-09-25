@@ -8,8 +8,11 @@ HEADER = ./cub3d.h
 
 LIBFT = ./libft
 
+MINILIBX = ./minilibx
+
 LIB = $(LIBFT)/libft.a
 
+MLX = $(MINILIBX)/libmlx.a
 
 CC = cc
 
@@ -18,19 +21,21 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIB) $(HEADER) 
-	$(CC) $(CFLAGS) $(LIB) $(OBJS) -lm -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(CFLAGS) $(LIB) $(MLX) $(OBJS) -lm -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 $(LIB):
 	@make -C libft
 
+$(MLX):
+	@make -C minilibx
+
 %.o: %.c	$(HEADER)
 			$(CC) $(CFLAGS) -c $< -o $@
 
-
 clean:
-	rm -rf ./*.o $(LIBFT)/*.o
+	rm -rf ./*.o $(LIBFT)/*.o  $(MINILIBX)/*.o
 
 fclean:	clean
-		rm -rf $(NAME) $(LIB)
+		rm -rf $(NAME) $(LIB) $(MLX)
 
 re:	fclean all
