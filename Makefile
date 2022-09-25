@@ -1,41 +1,39 @@
-SRCS = main.c
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: snouae <snouae@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/11/29 17:52:47 by snouae            #+#    #+#              #
+#    Updated: 2022/09/25 14:00:19 by snouae           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-OBJS = $(SRCS:%.c=%.o)
+SRC = main.c parser/ft_tools.c parser/get_next_line.c parser/get_next_line_utils.c parser/ft_split.c
+CC = gcc
+FLAGS = 
+MLXFLAGS = -lmlx -framework OpenGL -framework Appkit
+RM = rm  -rf
+
+OBJ= $(SRC:.c=.o)
 
 NAME = cub3d
 
-HEADER = ./cub3d.h
+all : $(NAME) clean
 
-LIBFT = ./libft
+$(NAME) : $(OBJ)
+	@$(CC) $(FLAGS) $(OBJ) $(MLXFLAGS) -o $(NAME)
 
-MINILIBX = ./minilibx
-
-LIB = $(LIBFT)/libft.a
-
-MLX = $(MINILIBX)/libmlx.a
-
-CC = cc
-
-CFLAGS = -Wall -Wextra -Werror
-
-all: $(NAME)
-
-$(NAME): $(OBJS) $(LIB) $(HEADER) 
-	$(CC) $(CFLAGS) $(LIB) $(MLX) $(OBJS) -lm -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-
-$(LIB):
-	@make -C libft
-
-$(MLX):
-	@make -C minilibx
-
-%.o: %.c	$(HEADER)
-			$(CC) $(CFLAGS) -c $< -o $@
+%.o : %.c so_long.h
+	@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	rm -rf ./*.o $(LIBFT)/*.o  $(MINILIBX)/*.o
+	$(RM) $(OBJ)
 
-fclean:	clean
-		rm -rf $(NAME) $(LIB) $(MLX)
+fclean: clean
+	@$(RM) $(NAME)
 
-re:	fclean all
+re : fclean all
+
+.PHONY:all clean fclean re
