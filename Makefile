@@ -6,11 +6,11 @@
 #    By: snouae <snouae@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/29 17:52:47 by snouae            #+#    #+#              #
-#    Updated: 2022/09/25 14:00:19 by snouae           ###   ########.fr        #
+#    Updated: 2022/09/25 14:48:35 by snouae           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = main.c parser/ft_tools.c parser/get_next_line.c parser/get_next_line_utils.c parser/ft_split.c
+SRC = main.c parser/ft_tools.c parser/get_next_line.c parser/get_next_line_utils.c parser/ft_split.c parser/ft_check_map.c parser/ft_check_paths.c parser/ft_cherch.c parser/ft_read.c
 CC = gcc
 FLAGS = 
 MLXFLAGS = -lmlx -framework OpenGL -framework Appkit
