@@ -3,18 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snouae <snouae@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ilahyani <ilahyani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:40:16 by snouae            #+#    #+#             */
-/*   Updated: 2022/09/25 23:14:15 by snouae           ###   ########.fr       */
+/*   Updated: 2022/10/04 16:29:20 by ilahyani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
 
-int	caracter_exit(t_map *map, int i, int *j)
+int	caracter_exit(t_map *map, int i, int *j, int *c_player)
 {
+	if(map->m[i][*j] == 'N' || map->m[i][*j] == 'S' || map->m[i][*j] == 'E' 
+	|| map->m[i][*j] == 'W')
+	{
+		map->view = map->m[i][*j];
+		map->px = *j * TILESIZE;
+		map->py = (i - map->top) * TILESIZE;
+		map->m[i][*j] = '0';
+		(*c_player)++;
+		if(*c_player > 1)
+			return (0);
+	}
 	if (map->m[i][*j] != '1' && map->m[i][*j] != '0' && map->m[i][*j] != 'N'
 	&& map->m[i][*j] != 'S' && map->m[i][*j] != 'E' && map->m[i][*j] != 'W'
 	&& map->m[i][*j] != ' ')
@@ -39,7 +50,7 @@ int	check_walls(t_map *map, int i, int *j)
 	return (1);
 }
 
-int check_wall_broken(t_map *map, int i, int *j, int leng)
+int check_wall_broken(t_map *map, int i, int leng)
 {
 	int k;
 	
@@ -66,9 +77,10 @@ int check_wall_broken(t_map *map, int i, int *j, int leng)
 	return (1);
 }
 
-int ft_handle_map(t_map *map, int i, int *j)
+int ft_handle_map(t_map *map, int i, int *j, int *c_player)
 {
 		int leng;
+		
 		if(map->top && i >= map->top)
 		{
 			if(map->big_width < ft_strlen(map->m[i]))
@@ -86,13 +98,13 @@ int ft_handle_map(t_map *map, int i, int *j)
 			{
 				if(map->m[i][*j] == '1')
 					map->rows = (i - map->top) + 1;
-				if(!caracter_exit(map, i, j))
+				if(!caracter_exit(map, i, j, c_player))
 					return (0);
 				if (map->m[i][*j] == '0')
 				{
 					if(!check_walls(map,i,j))
 						return (0);
-					if(!check_wall_broken(map,i,j,leng))
+					if(!check_wall_broken(map,i,leng))
 						return (0);
 				}
 				if(map->check == 1)

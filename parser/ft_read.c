@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_read.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snouae <snouae@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ilahyani <ilahyani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:25:10 by snouae            #+#    #+#             */
-/*   Updated: 2022/09/25 14:27:08 by snouae           ###   ########.fr       */
+/*   Updated: 2022/10/03 17:29:14 by ilahyani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void ft_read(char *path, t_map *map)
 	char	*buf;
 
 	buf = NULL;
-	int i;
-	i = 0;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		exit(1);

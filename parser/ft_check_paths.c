@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_paths.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snouae <snouae@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ilahyani <ilahyani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:30:55 by snouae            #+#    #+#             */
-/*   Updated: 2022/09/25 14:55:27 by snouae           ###   ########.fr       */
+/*   Updated: 2022/10/03 17:26:22 by ilahyani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,13 @@ int path_exit(t_map *map, char *way)
 	int i;
 	int j;
 	int c;
+	int c_player;
 
 	i = 0;
 	j = 0;
 	c = 0;
 	map->flags = 0;
+	c_player = 0;
 	while (map->m[i])
 	{
 		j = 0;
@@ -122,7 +124,7 @@ int path_exit(t_map *map, char *way)
 			if(!ft_valid_line(map, &i, &j))
 				return (0);
 		}
-		if(!ft_handle_map(map,i, &j))
+		if(!ft_handle_map(map,i, &j, &c_player))
 			return (0);
 		i++;
 	}
